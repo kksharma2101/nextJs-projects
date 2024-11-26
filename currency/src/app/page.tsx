@@ -1,8 +1,12 @@
+'use client'
 import Image from "next/image";
 import InputBox from "@/components/InputBox";
 import BackgroundImage from "../assets/image.jpg";
+import useCurrencyHooks from "@/hooks/useCurrencyHooks";
 
 export default function Home() {
+  // const currecnyInfo = 
+  useCurrencyHooks("inr");
   return (
     <>
       <div className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat">
@@ -13,7 +17,8 @@ export default function Home() {
           layout="fill"
           objectFit="cover"
           quality={100}
-          style={{ zIndex: -1 }}
+          // style={{ zIndex: -1 }}
+          className="-z-10"
         />
 
         <div className="w-full">
@@ -24,9 +29,7 @@ export default function Home() {
             // }}
             >
               <div className="w-full mb-1">
-                <InputBox
-                //  label="From"
-                />
+                <InputBox label="From" className="" />
               </div>
               <div className="relative w-full h-0.5">
                 <button
@@ -37,9 +40,7 @@ export default function Home() {
                 </button>
               </div>
               <div className="w-full mt-1 mb-4">
-                <InputBox
-                // label="To"
-                />
+                <InputBox label="To" className="" />
               </div>
               <button
                 type="submit"
