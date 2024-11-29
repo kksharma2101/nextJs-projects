@@ -1,18 +1,26 @@
 import React from "react";
 
-type indexProps = {
+type myIndexBoxProps = {
   label: string;
-  //   amount: number;
-  //   onAmountChange: number;
-  //   onCurrencyChange: number;
-  //   currencyOptions: [];
-  //   selectCurrency: "usd";
-  //   amountDisable: false;
-  //   currencyDisable: false;
+  amount: number;
+  onAmountChange: number;
+  onCurrencyChange: number;
+  currencyOptions: [];
+  amountDisable: false;
+  currencyDisable: false;
   className: "";
 };
 
-const InputBox: React.FC<indexProps> = ({ label, className }) => {
+const InputBox: React.FC<myIndexBoxProps> = ({
+  label,
+  currencyOptions,
+  className,
+  amount,
+  onAmountChange,
+  currencyDisable,
+  onCurrencyChange,
+  amountDisable,
+}) => {
   return (
     <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
       <div className="w-1/2">
@@ -21,12 +29,19 @@ const InputBox: React.FC<indexProps> = ({ label, className }) => {
           className="outline-none w-full bg-transparent py-1.5"
           type="number"
           placeholder="Amount"
+          value={amount}
+          onChange={(e) => onAmountChange && onAmountChange(e.target.value)}
+          disabled={currencyDisable}
         />
       </div>
       <div className="w-1/2 flex flex-wrap justify-end text-right">
         <p className="text-black/40 mb-2 w-full">Currency Type</p>
         <select className="rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none">
-          <option value="usd">usd</option>
+          {currencyOptions?.map((selectCurrency) => (
+            <option value={selectCurrency} key={selectCurrency}>
+              {selectCurrency}
+            </option>
+          ))}
         </select>
       </div>
     </div>
